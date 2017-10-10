@@ -11,7 +11,8 @@ encoding = 'gb2312' or encoding = 'utf-8'
 import pandas as pd
 import numpy as np
 df = pd.read_csv(r'C:\Users\Administor\Anaconda3\DataAnalyst.csv',encoding = 'gb2312')
-df
+df查看anaconda包   打开cmd  输入conda list
+安装包 pip install 包名称
 
 快速的浏览数据：df.info() 有6876行，posititonId 存在空值
 
