@@ -1,0 +1,17 @@
+查看anaconda包   打开cmd  输入conda list
+安装包 pip install 包名称
+Python提供了非常丰富的包和模块，合理应用这些模块将极大程度的提供数据分析能力。numpy、scipy、pandas是数据分析最常用的三个包，matplotlib、seaborn是常用的绘图包，scikit-learn、Gensim、NLTK是机器学习相关的包，urllib、BeautifulSoup是常用的爬虫包等。
+
+
+使用pandas
+首先载入数据，我参考的是秦璐老师的七周入门数据分析，跟着他的文章来操作实践的，可能是版本活动运行环境不同，我的语句和他的略有不同。
+encoding = 'gb2312' or encoding = 'utf-8'
+如果载入数据不对，换另外一个试试
+载入数据使用read_csv，另外还有read_excel，read_table;table可以读取txt格式，若是服务器相关的部署，则还会用到read_sql，但是必须配合相关的sql包
+
+
+df.head();和df.tail()  看表的前几列和后几列
+
+查看是否有重复数据：len(df.positionId.unique())  unique函数可以返回唯一值。配合len()函数计算出唯一值有多少个
+
+使用drop_duplicates 函数清洗数据，它通过参数subset参数选择哪个列为去重基准。keep参数则是保留方式，first是保留第一个，删除后面的重复值，last还是删除前面，保留最后一个。duplicated函数功能相似，返回的是布尔值
