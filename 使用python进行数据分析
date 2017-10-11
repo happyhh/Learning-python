@@ -16,7 +16,7 @@ df = pd.read_csv(r'C:\Users\Administor\Anaconda3\DataAnalyst.csv',encoding = 'gb
 df
 
 
-快速的浏览数据：df.info() 有6876行，posititonId 存在空值
+快速的浏览数据：df.info() 有6876行，positionId 存在空值
 
 df.head();和df.tail()  看表的前几列和后几列
 查看是否有重复数据：len(df.positionId.unique())  unique函数可以返回唯一值。配合len()函数计算出唯一值有多少个
