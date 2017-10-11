@@ -8,14 +8,29 @@ Python提供了非常丰富的包和模块，合理应用这些模块将极大�
 encoding = 'gb2312' or encoding = 'utf-8'
 如果载入数据不对，换另外一个试试
 载入数据使用read_csv，另外还有read_excel，read_table;table可以读取txt格式，若是服务器相关的部署，则还会用到read_sql，但是必须配合相关的sql包
+
+#读取数据#
 import pandas as pd
 import numpy as np
 df = pd.read_csv(r'C:\Users\Administor\Anaconda3\DataAnalyst.csv',encoding = 'gb2312')
-df查看anaconda包   打开cmd  输入conda list
-安装包 pip install 包名称
+df
+
 
 快速的浏览数据：df.info() 有6876行，posititonId 存在空值
 
 df.head();和df.tail()  看表的前几列和后几列
 查看是否有重复数据：len(df.positionId.unique())  unique函数可以返回唯一值。配合len()函数计算出唯一值有多少个
-使用drop_duplicates 函数清洗数据，它通过参数subset参数选择哪个列为去重基准。keep参数则是保留方式，first是保留第一个，删除后面的重复值，last还是删除前面，保留最后一个。duplicated函数功能相似，返回的是布尔值
+
+
+#清洗数据#
+df_duplicates = df.drop_duplicates(subset = 'PositionId',keep = 'first')
+df_duplicates.head(5)
+#使用drop_duplicates 函数清洗数据，它通过参数subset参数选择哪个列为去重基准。keep参数则是保留方式，first是保留第一个，删除后面的重复值，last还是删除前面，保留最后一个。duplicated函数功能相似，返回的是布尔值#
+
+
+
+#使用python画表（销售额）#
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.style.use('ggplot')
+df.selling_amout.hist(bins=500)
