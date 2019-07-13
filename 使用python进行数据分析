@@ -1,6 +1,8 @@
 查看anaconda包   打开cmd  输入conda list
 安装包 pip install 包名称
-Python提供了非常丰富的包和模块，合理应用这些模块将极大程度的提供数据分析能力。numpy、scipy、pandas是数据分析最常用的三个包，matplotlib、seaborn是常用的绘图包，scikit-learn、Gensim、NLTK是机器学习相关的包，urllib、BeautifulSoup是常用的爬虫包等。
+Python提供了非常丰富的包和模块，合理应用这些模块将极大程度的提供数据分析能力。numpy、scipy、pandas是数据分析最常用的三个包，
+matplotlib、seaborn是常用的绘图包，scikit-learn、Gensim、NLTK是机器学习相关的包，urllib、BeautifulSoup是常用的爬虫包等。
+
 
 
 使用pandas
