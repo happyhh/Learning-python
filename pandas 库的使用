@@ -1,0 +1,230 @@
+【缩写解释&库的导入】
+【数据的导入】
+【数据的导出】
+【创建测试对象】
+【数据的查看与检查】
+【数据的选取】
+【数据的清洗】
+【数据的过滤（filter）,排序（sort）和分组（groupby）】
+【数据的连接（join）与组合（combine）】
+【数据的统计】
+
+【缩写解释&库的导入】
+df---任意的pandas DataFrame (数据框) 对i象
+s-- 任意的Pandas Series(数组) 对象
+pandas和numpy 是用python做数据分析最基础且最核心的库
+
+In[1]：
+import pandas as pd
+import numpy as np
+
+【数据的导入】
+
+pd.read_csv(filename) #导入csv格式文件中的数据
+pd.read_table(filename) #导入有分隔符的文本（如TSV）中的数据
+pd.read_excel(filename) #导入excel格式文件中的数据
+pd.read_sql(query,connection_object) #导入sql数据表/数据库中的数据
+pd.read_json(json_string) # 导入json格式的字符，url地址或者文件中的数据
+pd.read_html(url) #导入经过解析的URL地址中包含的数据框（DataFrame）数据
+pd.read_clipboard() #导入系统粘贴板里面的数据
+pd.DataFrame(dict) #导入python字典（dict）里面的数据，其中key是数据框的表头。
+
+
+【数据的导出】
+
+df.to_csv(filename)    #将数据框（DateFrame）中的数据导入CSV格式的文件中
+
+df.to_excel(filename) #将数据框（DataFrame）中的数据导入excel格式的文件中
+
+df.to_sql(table_name,connection_object) #将数据框（DataFrame）中的数据导入SQL数据表/数据库中
+
+df.to_json(filename) #将数据框（DataFrame）中的数据导入JSON格式的文件中
+
+【创建测试对象】 
+
+pd.DataFrame(np.random.rand(10,5)) #创建一个5列10行的由随机浮点数组成的数据框 DataFrame
+
+In[2]:
+pd.DataFrame(np.random.rand(10,5))
+
+pd.Series(my_list) #从一个可迭代的对象  my_list中创建一个数据组
+In[3]:
+my_list = ["hello",100,"谢谢你"]
+pd.Series(my_list)
+
+Out[3]:
+0  hello
+1  100
+2  谢谢你
+dtype: object
+
+df.index = pd.date_range('2017/1/1',periods=df.shape[0]) #添加一个日期索引 index
+
+In[4]:
+df = pd.DataFrame(np.random.rand(10,5))
+df.index = pd.date_range('2017/1/1',periods = df.shape[0])
+df
+
+
+
+【数据的查看与检查】
+ 
+df.head(n) #查看数据框的前n行
+
+df.tail(n) #查看数据框的最后n行
+
+df.shape #查看数据框的行数与列数
+
+df.info() # 查看数据框（DataFrame）的索引、数据类型及内存信息
+
+df.describe() #对于数据类型为数值型的列，查询其描述性统计的内容（count(计数) mean(平均数) std(标准偏差) min(最小值) max(最大值) 25%，50%，75%）
+
+df.values #查看数组数据
+
+df.T #对数据进行行列转换
+
+df.sort_index(axis=1,ascending=False) #对axis进行排序
+df.sort_values(by ='B') #按照值排序
+
+s.value_counts(dropna = False) #查询每个独特数据值出现次数统计
+
+In[10]：
+s = pd.Series([1,2,3,3,4,np,nan,5,5,5,6,7])
+s.value_counts(dropna=False)
+
+df.apply(pd.Seriesvalue_counts) #查询数据框中每个列的独特数据值出现次数统计
+
+【数据的选取】
+
+df[col] #以数组Series的形式返回选取的列
+
+df[col1,col2] #以新的数据框的形式返回选取的列
+
+s.iloc[0] #按照位置选取
+s = pd.Series(np.array(['I','Love','Data']))
+s.iloc[0]
+'I'
+
+s.loc['index_one'] #按照索引选取
+
+s.loc[1]
+
+'Love'
+
+df.iloc[0,:] #选取第一行
+
+df.iloc[0,0] #选取第一行的第一个元素
+
+【数据的清洗】
+
+df.columns = ['a','b'] #重命名数据框的列名称
+
+pd.isnull()  #检查数据中空值出现的情况，并返回一个由布尔值（True,False）
+
+pd.notnull() #检查数据中非空值出现的情况，并返回一个由布尔值（true,false）组成的列
+
+pandas用np.nan代表缺失数据
+reindex() #修改/增加/删除索引，会返回一个数据的副本
+
+df.dropna() #移除数据框中包含空值的行
+
+df.dropna(axis=1) #移除数据框中包含空值的列
+
+df.dropna(axis=1,thresh=n) #移除数据框df中空值个数不超过n的行
+
+df.fillna(x) #j将数据框中的所有空值替换为x
+
+s.fillna(s.mean()) 将所有空值替换为平均值
+
+s.astype(float) #将数组（Series）的格式转化为浮点数
+
+s.replace(1,'one') #将数组中的所有1替换为‘one’
+
+s.replace([1,3],['one','three'])
+
+df.rename(columns=lambda x: x+2) #将全体列重名名
+
+df.rename(column = (
+{'old_name':'new_name'}) #将选择的列重命名
+
+df.set_index('column_one') #改变索引
+
+df.rename(index = lambda x : x+1) #改变全体索引
+
+
+
+
+
+【数据的过滤（filter）,排序（sort）和分组（groupby）】
+
+
+df[df[col]] > 0.5 #选取数据框df中对应行的数值大于0.5的全部列
+
+df[df[col] >0.5) & (df[col] < 0.7)] #选取数据框df中对应行的数值大于0.5，并且小于0.7的全部列
+
+df.sort_values(col1) #按照数据框的列col1升序（ascending）的方式对数据框df做排序
+
+df.sort_values(col2,ascending=False) #按照数据框的列col2降序（descending）的方式对数据框df做排序
+
+df.sort_values([col1,col2],ascending = [True,False]) #按照数据框的col1升序，col2降序的方式对数据框df做排序
+
+df.groupby(col) #按照某列对数据框df做分组
+
+df.groupby([col1,col2]) #按照col1 和col2对数据框df做分组
+
+df.groupby(col1)[col2].mean() #按照列col1对数据框df做分组处理后，返回对应的col2的平均值
+
+df.pivot_table(index=coll,values=[col2,col3]),aggfunc=name) #做透视表，索引为col1,针对的数值列为col2和col3,分组函数为平均值
+
+df.groupby(col1).agg(np.mean)
+
+df.apply(np.mean) #对数据框df的每一列求平均值
+df.apply(np.max,axis=1) #对数据框df的每一行求最大值
+
+【数据的连接（join）与组合（combine）】
+
+
+df1.append(df2) #在数据框df2的末尾添加数据框df1,其中df1和df2的列数应该相等
+
+pd.concat([df1,df2],axis=1) #在数据框df1的列最后添加数据框df2,其中df1和df2的行数应该相等
+
+df1.join(df2,on=col1,how ='inner') #对数据框df1和df2做内连接，其中连接的列为col1
+
+
+【数据的统计】
+
+df.describe() #得到数据框df每一列的描述性统计
+
+df.mean() #得到数据框df中每一列的平均值
+
+df.mean(1)#得到数据框df中每一行的平均值
+
+df.corr() #得到数据框df中每一列与其他列的相关系数
+
+df.count() #得到数据框df中每一列的非空值个数
+
+df.max() #得到数据框df中每一列的最大值
+
+df.max() #得到数据框df中每一列的最大值
+
+df.min() #得到数据框df中每一列的最小值
+
+df.median() #得到数据框中df的每一列的中位数
+
+df.std() #得到数据框df中每一列的标准差
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
