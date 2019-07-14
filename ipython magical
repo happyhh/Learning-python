@@ -8,3 +8,4 @@
 %pdb 在异常发生后自动进入调试器
 %paste 执行剪贴板的Python 代码
 %reset 删除interactive命令空间中的 全部变量/名称
+%logstart 记录整个会话（与之配套的有%logooff，%logon,%logstate和%logstop）
