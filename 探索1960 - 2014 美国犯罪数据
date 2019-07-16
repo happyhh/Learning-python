@@ -1,0 +1,17 @@
+1.import numpy as np 
+   import pandas as pd   #导入必要的库
+
+2.path4 = '../input/pandas_exercies/esercise_data/US_Crime_Rates_1960_2014.csv' #从以下地址导入数据集
+3.crime = pd.read_csv(path4)
+crome.head()  #将数据框命名为crime
+4.crime.info() #每一列（column）的数据类型是什么样的
+5.crime.Year = pd.to_datetime(crime,format='%Y')
+   crime.info() #将Year的数据类型转换为datetime64
+6.crime = crime_set_index('Year',drop = True)
+crime.head() #将列Year设置为数据框的索引
+7.del.crime['Total']
+   crime.head() #删除名为Total的列
+8.crimes = crime.resample('10AS').sum()
+population = crime['Population'].resample('10AS').max() #用resample去得到‘Population’列的最大值
+crimes['Population'] = population #更新‘Population’
+9.crime.idxmax(0) #何时是美国历史上生存最危险的年代
