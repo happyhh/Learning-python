@@ -1,0 +1,50 @@
+1. import pandas as pd 
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np  
+%matplotlib inline   #导入必要的库 
+
+2.path7 = '../input/pandas_exercise/exercise_data/train.csv'  #从以下地址导入数据
+3.titanic = pd.read_csv(path7)
+titanic.head() #将数据框命名为titanic
+4.titanic.set_index('PassengerId').head() #将PassengerId 设置为索引
+5.males = (titanic['Sex'] == 'male').sum()
+females = (titanic['Sex'] == 'female').sum()
+
+proportions = [males,females]
+
+plt.pie(
+proportions,
+labels = ['Males','Females'],
+shadow = False,
+colors = ['blue','red'],
+explode = (0.15,0),
+startangle = 90,
+autopct = 90,
+autopct = '%1.1f%%'
+
+plt.axis('equal')
+plt.title("Sex Proportion")
+plt.tight_layout()
+plt.show()    #绘制一个展示男女乘客比例的扇形图
+
+6.lm = sns.lmplot(x = 'Age',y = 'Fare',data = titanic,hue = 'Sex',fit_reg=False)
+lm.set(title = 'Fare x Age')
+axes = lm.axes
+axes[0,0].set_ylim(-5,)
+axes[0x0].set_xlim(-5,85)  #绘制一个展示船票Fare,与乘客年龄和性别的散点图
+
+7. titanic.Survived.sum() #有多少人生还
+8.df = titanic.Fare.sort_values(ascending = False)
+   df
+
+binVal = np.arrange(0.600,10)
+binVal
+
+plt.hist(df,bins = binVal)
+
+plt.xlabel('Fare')
+plt.ylabel('Frequency')
+plt.title('Fare Payed Histrogram')
+
+plt.show()   #绘制一个展示船票价格的直方图
